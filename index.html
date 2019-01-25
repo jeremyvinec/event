@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>event</title>
+</head>
+<body id="content">
+    <div id="gris"><div id="vert"></div></div>
+    <div id="gris2"><div id="vert2"></div></div>
+    <div id="gris3"><div id="vert3"></div></div>
+    <div id="gris4"><div id="vert4"></div></div>
+</body>
+<script>
+    let vert = document.getElementById('vert');
+    let gris = document.getElementById('gris');
+
+    let body = document.getElementById('content');
+    body.style.display = 'flex';
+    body.style.justifyContent = 'space-between';
+
+    function carre (){
+        gris.style.width = '150px';
+        gris.style.height = '150px';
+        gris.style.backgroundColor = 'grey'
+        vert.style.width = '75px';
+        vert.style.height = '75px';
+        vert.style.backgroundColor = 'green';
+        vert.textContent = '1er cas';
+
+        vert.addEventListener('click', function(e){
+            alert('vert');
+        },false)
+        gris.addEventListener('click',function(e){
+            alert('gris');
+        },false)
+
+    }carre();
+
+    function carre2 (){
+        gris2.style.width = '150px';
+        gris2.style.height = '150px';
+        gris2.style.backgroundColor = 'grey'
+        vert2.style.width = '75px';
+        vert2.style.height = '75px';
+        vert2.style.backgroundColor = 'green';
+        vert2.textContent = '2ème cas';
+
+        vert2.addEventListener('click', function(e){
+            alert('vert2');
+        },false)
+        gris2.addEventListener('click',function(e){
+            alert('gris2');
+        },true)
+
+    }carre2();
+
+    function carre3 (){
+        gris3.style.width = '150px';
+        gris3.style.height = '150px';
+        gris3.style.backgroundColor = 'grey'
+        vert3.style.width = '75px';
+        vert3.style.height = '75px';
+        vert3.style.backgroundColor = 'green';
+        vert3.textContent = '3ème cas';
+
+        vert3.addEventListener('click', function(e){
+            alert('vert3');
+            e.stopPropagation();
+        },false)
+        gris3.addEventListener('click',function(e){
+            alert('gris3');
+        },false)
+
+    }carre3();
+
+    function carre4 (){
+        gris4.style.width = '150px';
+        gris4.style.height = '150px';
+        gris4.style.backgroundColor = 'grey'
+        gris4.style.position = 'absolute';
+        gris4.style.top = '200px';
+        gris4.style.left = '75px';
+        vert4.style.width = '75px';
+        vert4.style.height = '75px';
+        vert4.style.backgroundColor = 'green';
+        vert4.textContent = '4ème cas';
+
+        vert4.addEventListener('click', function(e){
+            alert('vert4');
+            e.stopPropagation();
+        }),false
+
+        dx = 0; let dy = 0;
+
+        gris4.addEventListener('mousedown', mousedown, false);
+
+        function mousedown(e){
+            dy = e.clientY - parseInt(gris4.style.top);
+            dx = e.clientX - parseInt(gris4.style.left);
+
+            window.addEventListener('mousemove', drag, false);
+            window.addEventListener('mouseup', closeDrag, false);
+        }
+
+        function drag(e){
+            gris4.style.top = (e.clientY - dy) + 'px';
+            gris4.style.left = (e.clientX - dx) + 'px';
+        }
+
+        function closeDrag(){
+            window.removeEventListener('mousemove', drag);
+        }
+
+    }carre4();
+</script>
+</html>
